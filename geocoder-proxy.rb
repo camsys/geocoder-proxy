@@ -15,7 +15,8 @@ end
 
 get '/geocode' do
   cors_headers
-  result = Geocoder.search(params[:address])
+  result = Geocoder.search(params[:address], components: 'administrative_area:GA|country:US', sensor: false,
+    bounds: [[33.737147,-84.406634], [33.764125,-84.370361]])
   builder do |xml|
     xml.geocodeResults do
       xml.count result.size
